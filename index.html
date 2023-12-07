@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <script src='./meteo.js'>  </script>
+  <script src='./qualite-air.js'>  </script>
+</head>
+<body>
+  <h1>Meteo App</h1>
+  <label for="villes">Saisir une ville:</label>
+  <select id="villes" name="villes">
+    <option value="Paris">Paris</option>
+    <option value="Londres">Londres</option>
+    <option value="Madrid">Madrid</option>
+    <option value="Berlin">Berlin</option>
+    <option value="Rome">Rome</option>
+</select>
+  <button onclick="getMeteo()">Voir meteo</button>
+  <div id="weatherInfo"></div>
+  <button onclick="getQualite()">Voir qualite de l'air à Paris</button>
+  <div id="qualiteAir"></div>
+  
+</body>
+</html>
