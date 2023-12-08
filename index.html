@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,10 @@
   <script src='./meteo.js'>  </script>
   <script src='./qualite-air.js'>  </script>
   <script src='./disruption.js'>  </script>
+  <script src='./transport.js'>  </script>
 </head>
-<body onload="getDisruption()">
+
+<body>
   <h1>Meteo App</h1>
   <label for="villes">Saisir une ville:</label>
   <select id="villes" name="villes">
@@ -17,16 +20,21 @@
     <option value="Madrid">Madrid</option>
     <option value="Berlin">Berlin</option>
     <option value="Rome">Rome</option>
-</select>
+  </select>
   <button onclick="getMeteo()">Voir meteo</button>
   <div id="weatherInfo"></div>
   <button onclick="getQualite()">Voir qualite de l'air à Paris</button>
   <div id="qualiteAir"></div>
   <div>
-  <div id="disruptions"></div>
-  ====================================================================================================
-  <div id="alerts"></div>
-</div>
-  
+    <div onclick="getDisruption()">
+      Perturbations du transport en commun
+      <div id="disruptions"></div>
+      ====================================================================================================
+      <div id="alerts"></div>
+    </div>
+  </div>
+  <div onclick="getChantiers()" id="transport">
+    Perturbations routiers
+  </div>
 </body>
 </html>
