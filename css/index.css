@@ -1,0 +1,123 @@
+.container {  display: grid;
+    grid-template-columns: 0.8fr 1.4fr 0.8fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "meteo public-transport transport-road";
+  }
+  
+  .meteo {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 1.5fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "meteo-icon"
+      "meteo-table";
+    grid-area: meteo;
+  }
+  
+  .meteo-icon {
+    justify-self: center;
+    align-self: center;
+    grid-area: meteo-icon;
+  }
+  
+  .meteo-table {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-columns: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "temperature"
+      "rain"
+      "cloud-cover"
+      "wind-speed"
+      "air-quality";
+    grid-area: meteo-table;
+  }
+  
+  .temperature {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "icon name value";
+    grid-area: temperature;
+  }
+  
+  .icon { grid-area: icon; }
+  
+  .name { grid-area: name; }
+  
+  .value { grid-area: value; }
+  
+  .rain {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . .";
+    grid-area: rain;
+  }
+  
+  .cloud-cover {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . .";
+    grid-area: cloud-cover;
+  }
+  
+  .wind-speed {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . .";
+    grid-area: wind-speed;
+  }
+  
+  .air-quality {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . .";
+    grid-area: air-quality;
+  }
+  
+  .public-transport {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "perturbations"
+      "alerts";
+    grid-area: public-transport;
+  }
+  
+  .perturbations {
+    justify-self: center;
+    grid-area: perturbations;
+  }
+  
+  .alerts {
+    justify-self: center;
+    grid-area: alerts;
+  }
+  
+  .transport-road {
+    justify-self: center;
+    grid-area: transport-road;
+  }
+  

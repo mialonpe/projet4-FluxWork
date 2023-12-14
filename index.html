@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FluxWork: Page d'acceuil</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/index.css">
   <script src='./meteo.js'>  </script>
   <script src='./qualite-air.js'>  </script>
   <script src='./disruption.js'>  </script>
@@ -18,6 +19,10 @@
         <img src="./images/sailboat.png" width="50" height="50" class="d-inline-block align-top" alt="" style="margin-left: 50px; margin-right: 20px;">
         <span class="d-none d-lg-inline-block" style="font-size: 30px; font-family: 'Montserrat', sans-serif; font-weight: bold; color: black;">FluxWork</span>
       </a>
+      <h3 class="navbar-brand">Ile-deFrance</h3>
+      <button class="primary-btn" >
+        <img src="images/power_switch_icon_125180.svg">
+      </button>
     </nav>
   </header>
 
@@ -27,7 +32,7 @@
     <div id="qualiteAir"></div>
   </div>
 
-  <div>
+ <!--<div>
     <div >
       <a>Perturbations du transport en commun</a>
       <div id="disruptions"></div>
@@ -39,8 +44,47 @@
   <div >
     <a>Perturbations routiers</a>
     <div  id="transport"></div>
-  </div>
+  </div>-->
 
+
+  <div class="container">
+    <div class="meteo">
+      <div class="meteo-icon"></div>
+      <div class="meteo-table">
+        <div class="temperature">
+          <div id="temp-icon" class="icon"></div>
+          <div id="temp-name" class="name"></div>
+          <div id="temp-value" class="value"></div>
+        </div>
+        <div class="rain">
+          <div id="rain-icon" class="icon"></div>
+          <div id="rain-name" class="name"></div>
+          <div id="temp-value" class="value"></div>
+        </div>
+        <div class="cloud-cover">
+          <div id="temp-icon" class="icon"></div>
+          <div id="temp-name" class="name"></div>
+          <div id="temp-value" class="value"></div>
+        </div>
+        <div class="wind-speed">
+          <div id="wind-icon" class="icon"></div>
+          <div id="wind-name" class="name"></div>
+          <div id="wind-value" class="value"></div>
+        </div>
+        <div class="air-quality">
+          <div id="air-icon" class="icon"></div>
+          <div id="air-name" class="name"></div>
+          <div id="air-value" class="value"></div>
+        </div>
+      </div>
+    </div>
+    <div class="public-transport">
+      <div id="disruptions" class="perturbations"></div>
+      <div id="alerts" class="alerts"></div>
+    </div>
+    <div id="transport" class="transport-road">
+    </div>
+  </div>
   <footer style="margin-top: 20px;">
     <nav class="navbar navbar-expand-lg navbar-light fixed-bottom" style="background-color: rgb(23, 212, 203); ">
       <a class="navbar-brand" href="#">
@@ -50,3 +94,4 @@
   </footer>
 </body>
 </html>
+
