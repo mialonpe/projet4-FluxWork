@@ -1,5 +1,4 @@
 
-
 function getFormattedDate() {
     const today = new Date();
     const year = today.getFullYear();
@@ -48,6 +47,7 @@ async function getDisruption() {
 function getDisruptMsg(messages) {
     msg = document.createElement("div");
     msg.innerText = messages[0].text;
+    console.log('getDisruptMsg')
     
     document.getElementById('disruptions').appendChild(msg);
     for (m of messages) {
@@ -65,13 +65,14 @@ function getDisruptMsg(messages) {
 }
 
 function getAlertMsg(message) {
+    console.log('getAlertMsg')
     msg = document.createElement("div");
     msg.innerHTML = message[0].text;
     document.getElementById('alerts').appendChild(msg);
 }
 
 function showMsgPlus(id) {
-    console.log(id);
+    console.log('showMsgPlus : '+id);
     let msgPlus = document.getElementById(id);
     console.log(msgPlus);
     msgPlus.style.display = 'block';

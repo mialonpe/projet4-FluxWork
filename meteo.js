@@ -1,41 +1,51 @@
 
-const coordParis = ["48.8534100","2.3488000"];
-const coordLondres = ["48.862725","2.287592"];
-const coordMadrid = ["40.4167047","-3.7035825"];
-const coordBerlin = ["52.5170365","13.3888599"];
-const coordRome = ["41.8933203","12.4829321"];
-
-function getCoordonees() {
-    var ville = document.getElementById('villes').value;
-    if (ville == "Paris") {
-        return coordParis;
-    } else if (ville == "Londres") {
-        return coordLondres;
-    } else if (ville == "Madrid") {
-        return coordMadrid;
-    } else if (ville == "Berlin") {
-        return coordBerlin;
-    } else if (ville == "Rome") {
-        return coordRome;
-    }
-}
-
 async function getMeteo() {
-    let coordonees = getCoordonees();
+    let coordoneesParis = ["48.8534100", "2.3488000"];
     try {
-        const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${coordonees[0]}&longitude=${coordonees[1]}&current=temperature_2m,precipitation,cloud_cover&forecast_days=1`;
+        const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${coordoneesParis[0]}&longitude=${coordoneesParis[1]}&current=temperature_2m,precipitation,cloud_cover,wind_speed_10m&forecast_days=1`;
         const response = await fetch(apiUrl);
         const data = await response.json();
 
         if (data.cod !== '404') {
             const temperature = `Temperature: ${data.current.temperature_2m} °C`;
             const precipitation = `Precipitation: ${data.current.precipitation} mm`;
-            const cloudCover = `Cloud cover: : ${data.current.cloud_cover} %`;
-            document.getElementById('weatherInfo').innerText = temperature +" | "+ precipitation +" | "+ cloudCover;
+            const cloudCover = `Cloud cover: ${data.current.cloud_cover} %`;
+            const wind = `Wind speed: ${data.current.wind_speed_10m} km/h`;
+            document.getElementById('weatherInfo').innerText = temperature + " | " + precipitation + " | " + cloudCover + " | " + wind;
+            getIcon(data);
         }
     } catch (error) {
         console.error('Error fetching weather data:', error);
     }
+}
+
+function getIcon(data) {
+    console.log('getIcon(data)');
+    console.log(data);
+    console.log(data.current.cloud_cover);
+    icon = document.createElement('img');
+    if (data.current.cloud_cover >= 80) {
+        console.log("data.current.cloudCover > 80");
+        if (data.current.precipitation > 0) {
+            if (data.current.temperature_2m > 0){
+                icon.src = "./images/rain-cloud_icon-icons.com_54268.svg";
+            } else {
+                icon.src = "./images/weather-snow_snowing_icon-icons.com_67738.svg";
+            }          
+        } else {
+            icon.src = "./images/two-clouds-outlined-symbol-of-stroke-for-weather-interface_icon-icons.com_54632.svg";
+        }
+    } else if (10< data.current.cloud_cover < 80) {
+        console.log("10< data.current.cloudCover < 80")
+        if (data.current.precipitation > 0){
+            icon.src = "images/sun-and-rain_icon-icons.com_54243.svg";
+        } else {
+            icon.src = "./images/sunandcloud_102742.svg";
+        }      
+    } else {
+        icon.src = "./images/sun-day-weather-symbol_icon-icons.com_73146.svg"
+    }
+    document.getElementById('weatherInfo').appendChild(icon);
 }
 
 //export {getMeteo};
