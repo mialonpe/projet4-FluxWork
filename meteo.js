@@ -7,16 +7,26 @@ async function getMeteo() {
         const data = await response.json();
 
         if (data.cod !== '404') {
-            const temperature = `Temperature: ${data.current.temperature_2m} °C`;
-            const precipitation = `Precipitation: ${data.current.precipitation} mm`;
-            const cloudCover = `Cloud cover: ${data.current.cloud_cover} %`;
-            const wind = `Wind speed: ${data.current.wind_speed_10m} km/h`;
-            document.getElementById('weatherInfo').innerText = temperature + " | " + precipitation + " | " + cloudCover + " | " + wind;
-            getIcon(data);
+            insertInfoMeteo(data);
         }
     } catch (error) {
         console.error('Error fetching weather data:', error);
     }
+}
+
+function insertInfoMeteo(data) {
+    const temperature = `${data.current.temperature_2m} °C`;
+    const precipitation = `${data.current.precipitation} mm`;
+    const cloudCover = `${data.current.cloud_cover} %`;
+    const wind = `${data.current.wind_speed_10m} km/h`;
+    console.log('Insert les donnees meteo')
+
+    document.getElementById('temp-value').innerText = temperature;
+    document.getElementById('rain-value').innerText = precipitation;
+    document.getElementById('cloud-value').innerText = cloudCover;
+    document.getElementById('wind-value').innerText = wind;
+
+    getIcon(data);
 }
 
 function getIcon(data) {
@@ -27,25 +37,25 @@ function getIcon(data) {
     if (data.current.cloud_cover >= 80) {
         console.log("data.current.cloudCover > 80");
         if (data.current.precipitation > 0) {
-            if (data.current.temperature_2m > 0){
+            if (data.current.temperature_2m > 0) {
                 icon.src = "./images/rain-cloud_icon-icons.com_54268.svg";
             } else {
                 icon.src = "./images/weather-snow_snowing_icon-icons.com_67738.svg";
-            }          
+            }
         } else {
             icon.src = "./images/two-clouds-outlined-symbol-of-stroke-for-weather-interface_icon-icons.com_54632.svg";
         }
-    } else if (10< data.current.cloud_cover < 80) {
+    } else if (10 < data.current.cloud_cover < 80) {
         console.log("10< data.current.cloudCover < 80")
-        if (data.current.precipitation > 0){
+        if (data.current.precipitation > 0) {
             icon.src = "images/sun-and-rain_icon-icons.com_54243.svg";
         } else {
             icon.src = "./images/sunandcloud_102742.svg";
-        }      
+        }
     } else {
         icon.src = "./images/sun-day-weather-symbol_icon-icons.com_73146.svg"
     }
-    document.getElementById('weatherInfo').appendChild(icon);
+    document.getElementById('meteo-img').appendChild(icon);
 }
 
 //export {getMeteo};

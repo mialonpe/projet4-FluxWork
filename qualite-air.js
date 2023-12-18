@@ -6,13 +6,17 @@ async function getQualite() {
         const data = await response.json();
 
         if (data.cod !== '404') {
-            const qualite = `Qualite de l'air: ${data.data.current.pollution.aqius} (US index)`;
-            console.log(qualite);
-            document.getElementById('qualiteAir').innerText = qualite;
+            const qualite = `${data.data.current.pollution.aqius} (US index)`;
+            insertInfo(qualite);
+            
         }
     } catch (error) {
         console.error('Error fetching weather data:', error);
     }
+}
+
+function insertInfo(qualite) {
+    document.getElementById('air-value').innerText = qualite;
 }
 
 
