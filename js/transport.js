@@ -34,16 +34,17 @@ async function getChantiers() {
 
 function getChantierMsg(result) {
     transport = document.getElementById("transport");
-    console.log(transport.id)
+
+    let card = document.createElement("div");
+    card.classList.add("card", "m-2", "p-3");
+    transport.appendChild(card);
 
     let voieMsg = document.createElement("div");
     voieMsg.innerText = result.voie;
-    transport.appendChild(voieMsg);
+    voieMsg.style.fontWeight ='bold';
+    card.appendChild(voieMsg);
 
     let localMsg = document.createElement("div");
     localMsg.innerText = result.precision_localisation;
-    transport.appendChild(localMsg);
-
-    let br = document.createElement("br");
-    transport.appendChild(br);
+    card.appendChild(localMsg);
 }

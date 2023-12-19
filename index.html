@@ -7,16 +7,16 @@
   <title>FluxWork: Page d'acceuil</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/index.css">
-  <script src='./meteo.js'>  </script>
-  <script src='./qualite-air.js'>  </script>
-  <script src='./disruption.js'>  </script>
-  <script src='./transport.js'>  </script>
+  <script src='./js/meteo.js'>  </script>
+  <script src='./js/qualite-air.js'>  </script>
+  <script src='./js/disruption.js'>  </script>
+  <script src='./js/transport.js'>  </script>
 </head>
 
 <body style="padding-top:100px; padding-bottom: 50px; margin-left: 20px; margin-right: 20px"
   onload="getMeteo(), getDisruption(), getQualite(), getChantiers()">
   <header style="margin-bottom: 30px;">
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgb(23, 212, 203)">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top d-flex" style="background-color: rgb(23, 212, 203)">
       <a class="navbar-brand" href="#">
         <img src="./images/sailboat.png" width="50" height="50" class="d-inline-block align-top" alt=""
           style="margin-left: 50px; margin-right: 20px;">
@@ -24,17 +24,13 @@
           style="font-size: 30px; font-family: 'Montserrat', sans-serif; font-weight: bold; color: black;">FluxWork</span>
       </a>
       <h3 class="navbar-brand">Ile-deFrance</h3>
-      <button class="btn">
-        <img src="images/power_switch_icon_125180.svg">
-      </button>
+      <div class="login">
+        <button class="btn" style="height: 80px; width: 80px;">
+          <img src="images/power_switch_icon_125180.svg">
+        </button>
+      </div>
     </nav>
   </header>
-
-  <!--<div>
-    <a>La météo courant</a>   
-    <div id="weatherInfo"></div>
-    <div id="qualiteAir"></div>
-  </div> -->
 
   <div class="container">
     <div class="meteo">
@@ -89,10 +85,30 @@
     </div>
 
     <div class="public-transport">
-      <div id="disruptions" class="perturbations"></div>
-      <div id="alerts" class="alerts"></div>
+      <div id="public-icon" class="subtitle-icon2">
+        <img src="images/train_122364.svg">
+        <a>Transport en commun</a>
+      </div>
+      <div>
+        <ul class="nav nav-tabs d-flex justify-content-center">
+            <li class="nav-item" id="tab-disruptions" onclick="getTabs(id)">
+                <a class="nav-link active" aria-current="page" href="#" ">Perturbations</a>               
+            </li>
+            <li class="nav-item" id="tab-alerts" onclick="getTabs(id)">
+                <a class="nav-link" aria-current="page" href="#">Alertes</a>               
+            </li>
+        </ul>
+        <div id="disruptions" class="perturbations"></div>
+        <div id="alerts" class="alerts"></div>     
     </div>
-    <div id="transport" class="transport-road">
+      
+    </div>
+    <div class="transport-road">
+      <div id="road-icon" class="subtitle-icon3">
+        <img src="images/car_105142.svg">
+        <a>Transport routier</a>
+      </div>
+      <div id="transport" class="transport"></div>
     </div>
   </div>
   <footer style="margin-top: 20px;">
@@ -101,10 +117,9 @@
         <img src="./images/sailboat.png" width="20" height="20" class="d-inline-block align-top" alt=""
           style="margin-left: 10px; margin-right: 20px;">
       </a>
-      <a class="" href=""></a>
-      <a class="" href=""></a>
-      <a class="" href=""></a>
-      <a class="" href=""></a>
+      <a class="api-footer" href="http://api.open-meteo.com/">api.open-meteo.com</a>
+      <a class="api-footer" href="https://api-docs.iqair.com/">AirVisual API (iqair.com)</a>
+      <a class="api-footer" href="https://data.ratp.fr/api/explore/v2.1/console">API — Open Data RATP</a>
     </nav>
   </footer>
 </body>

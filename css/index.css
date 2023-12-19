@@ -10,9 +10,46 @@
   align-items:flex-start;
   justify-content: center;
   justify-items: center;
+  text-align: center;
   height: 100%;
-  width: 40vw;
+  width: 20vw;
   margin: 5px;
+
+}
+
+.public-transport{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  justify-content: center;
+  justify-items: center;
+  height: 100%;
+  width: 45vw;
+  margin: 5px;
+}
+
+.transport-road{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  justify-content: center;
+  justify-items: center;
+  height: 100%;
+  width: 20vw;
+  margin: 5px;
+}
+
+.transport {
+  border: 1px solid #c8c8c8e7;
+  margin-top: 5%;
+  overflow-x: hidden;
+  overflow-y: scroll; 
+  border: 1px solid #c8c8c8e7;
+  padding: 5px;
+  height: 28vw;
+  width: 20vw;
 }
 
 .meteo-sky {
@@ -28,6 +65,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  border: 1px solid #c8c8c8e7;
 }
 
 .temperature,
@@ -55,30 +93,50 @@
   font-weight: bold;
 }
 
-.public-transport {
-  display: flex;
-  flex-direction: column;
-}
-
 .perturbations {
-  justify-self: center;
+  overflow-x: hidden;
+  overflow-y: scroll; 
+  border: 1px solid #c8c8c8e7;
+  padding: 5px;
+  height: 26vw;
+  width: 45vw;
 }
 
 .alerts {
-  justify-self: center;
-}
-
-.transport-road {
-  justify-self: center;
+  display: none;
+  overflow-x: hidden;
+  overflow-y: scroll; 
+  border: 1px solid #c8c8c8e7;
+  padding: 5px;
+  height: 26vw;
+  width: 45vw;
 }
 
 .subtitle-icon {
-  margin-left: 10%;
-  margin-right: 10%;
   display: flex;
   flex-direction: row;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bolder;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.subtitle-icon2 {
+  display: flex;
+  flex-direction: row;
+  font-size: 25px;
+  font-weight: bolder;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.subtitle-icon3 {
+  display: flex;
+  flex-direction: row;
+  font-size: 25px;
+  font-weight: bolder;
+  margin-left: 0%;
+  margin-right: 0%;
 }
 
 img {
@@ -93,7 +151,33 @@ img {
 
 }
 
+.subtitle-icon2 img,
+.subtitle-icon2 a {
+  justify-self: center;
+  align-self: center;
+
+}
+
+.subtitle-icon3 img,
+.subtitle-icon3 a {
+  justify-self: center;
+  align-self: center;
+
+}
+
 .subtitle-icon img {
+  height: 40px;
+  width: 40px;
+  margin-right: 5px;
+}
+
+.subtitle-icon2 img {
+  height: 40px;
+  width: 40px;
+  margin-right: 5px;
+}
+
+.subtitle-icon3 img {
   height: 40px;
   width: 40px;
   margin-right: 5px;
@@ -102,5 +186,22 @@ img {
 .subtitle-icon a {
   display: flex;
   flex-direction: row;
-  
+}
+
+.subtitle-icon2 a {
+  display: flex;
+  flex-direction: row;
+}
+
+.subtitle-icon3 a {
+  display: flex;
+  flex-direction: row;
+}
+
+.api-footer{
+  margin-left: 15%;
+}
+
+.login {
+  margin-left: 50%;
 }
