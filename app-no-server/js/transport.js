@@ -12,7 +12,7 @@ function getFormattedDate() {
 async function getChantiers() {
     let date = getFormattedDate();
     try {
-        const apiUrl = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/chantiers-perturbants/records?limit=20`;
+        const apiUrl = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/chantiers-perturbants/records?limit=99`;
         const response = await fetch(apiUrl, {
             method: 'GET',
             //headers: headers
