@@ -1,5 +1,4 @@
-
-function getResponse() {
+function getResponseMeteo() {
     return fetch("http://localhost:8282/meteo", {
 
         // Adding method type
@@ -20,24 +19,29 @@ function getResponse() {
 }
 
 function showMeteo() {
-    getResponse()
+    getResponseMeteo()
         .then(data => insertInfoMeteo(data))
         .catch(error => console.error('Error fetching meteo data:', error));
 }
 
 function insertInfoMeteo(data) {
-    const temperature = `${data.current.temperature_2m} °C`;
-    const precipitation = `${data.current.precipitation} mm`;
-    const cloudCover = `${data.current.cloud_cover} %`;
-    const wind = `${data.current.wind_speed_10m} km/h`;
-    console.log('Insert les donnees meteo')
+    if (data && data.current) {
+        const temperature = `${data.current.temperature_2m} °C`;
+        const precipitation = `${data.current.precipitation} mm`;
+        const cloudCover = `${data.current.cloud_cover} %`;
+        const wind = `${data.current.wind_speed_10m} km/h`;
+        console.log('Insert les donnees meteo')
 
-    document.getElementById('temp-value').innerText = temperature;
-    document.getElementById('rain-value').innerText = precipitation;
-    document.getElementById('cloud-value').innerText = cloudCover;
-    document.getElementById('wind-value').innerText = wind;
+        document.getElementById('temp-value').innerText = temperature;
+        document.getElementById('rain-value').innerText = precipitation;
+        document.getElementById('cloud-value').innerText = cloudCover;
+        document.getElementById('wind-value').innerText = wind;
 
-    getIcon(data);
+        getIcon(data);
+    } else {
+        console.error('Invalid or missing data structure in the response');
+    }
+
 }
 
 function getIcon(data) {
@@ -69,4 +73,3 @@ function getIcon(data) {
     document.getElementById('meteo-img').appendChild(icon);
 }
 
-//export {getMeteo};

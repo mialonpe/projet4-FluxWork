@@ -1,22 +1,31 @@
+function getResponseQualite() {
+    return fetch("http://localhost:8282/qualite-air", {
 
-async function getQualite() {
-    try {
-        const apiUrl = `http://api.airvisual.com/v2/city?city=Paris&state=Ile-de-France&country=France&key=999de611-bfb1-41a6-8816-a04ace2a6134`;
-        const response = await fetch(apiUrl);
-        const data = await response.json();
+        // Adding method type
+        method: "GET",
 
-        if (data.cod !== '404') {
-            const qualite = data.data.current.pollution.aqius;
-            insertInfo(qualite);
-            
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
         }
-    } catch (error) {
-        console.error('Error fetching weather data:', error);
-    }
+    })
+        // Converting to JSON
+        .then(response => response.json())
+        // Displaying results to console
+        .then(json => {
+            console.log(json);
+            return json
+        });
 }
 
-function insertInfo(qualite) {
-    console.log('qualite : ' + qualite);
+function showQualite(){
+    getResponseQualite()
+    .then(data => insertInfoQualite(data))
+    .catch(error => console.error('Error fetching qualite-air data:', error));
+}
+
+function insertInfoQualite(data) {
+    let qualite = data.aqius;
     let airValue = document.getElementById('air-value');
     if (qualite < 50) {
         airValue.innerText = 'Bonne';
@@ -32,7 +41,3 @@ function insertInfo(qualite) {
         airValue.style.color = 'purple';
     }
 }
-
-
-
-//export {getMeteo};

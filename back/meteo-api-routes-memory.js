@@ -7,7 +7,6 @@ const apiRouter = express.Router();
 apiRouter.route('/meteo')
 .get(async function(req, res, next) {
     var meteo = await meteoApi.getMeteo();
-    console.log("apiRouter.route('/meteo') : " + JSON.stringify(meteo));
     res.send(meteo);
 });
 
