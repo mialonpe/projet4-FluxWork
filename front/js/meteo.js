@@ -30,7 +30,6 @@ function insertInfoMeteo(data) {
         const precipitation = `${data.current.precipitation} mm`;
         const cloudCover = `${data.current.cloud_cover} %`;
         const wind = `${data.current.wind_speed_10m} km/h`;
-        console.log('Insert les donnees meteo')
 
         document.getElementById('temp-value').innerText = temperature;
         document.getElementById('rain-value').innerText = precipitation;
@@ -41,13 +40,9 @@ function insertInfoMeteo(data) {
     } else {
         console.error('Invalid or missing data structure in the response');
     }
-
 }
 
 function getIcon(data) {
-    console.log('getIcon(data)');
-    console.log(data);
-    console.log(data.current.cloud_cover);
     icon = document.createElement('img');
     if (data.current.cloud_cover >= 80) {
         console.log("data.current.cloudCover > 80");
