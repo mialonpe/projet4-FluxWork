@@ -1,35 +1,34 @@
-function getFormattedDate() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const day = String(today.getDate()).padStart(2, '0');
+function getResponseTransport() {
+    return fetch("http://localhost:8282/transport", {
 
-    const formattedDate = `${year}-${month}-${day}`;
-    console.log(formattedDate)
-    return formattedDate;
+        // Adding method type
+        method: "GET",
+
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+        // Converting to JSON
+        .then(response => response.json())
+        // Displaying results to console
+        .then(json => {
+            return json;
+        });
 }
 
-async function getChantiers() {
-    let date = getFormattedDate();
-    try {
-        const apiUrl = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/chantiers-perturbants/records?limit=20`;
-        const response = await fetch(apiUrl, {
-            method: 'GET',
-            //headers: headers
-        });
-        const data = await response.json();
-        if (data.results.length > 0) {
-            const results = data.results;
-            for (result of results) {
-                if (result.date_fin >= date) {
-                    console.log(result);
-                    getChantierMsg(result)
+function showTransport() {
+    getResponseTransport()
+        .then(data => {
+            if (data.length > 0) {
+                for (result of data) {
+                    if (result.date_fin >= getFormattedDate()) {
+                        getChantierMsg(result)
+                    }
                 }
             }
-        }
-    } catch (error) {
-        console.error('Error fetching disruptions data:', error);
-    }
+        })
+        .catch(error => console.error('Error fetching transport data:', error));
 }
 
 function getChantierMsg(result) {
@@ -41,10 +40,21 @@ function getChantierMsg(result) {
 
     let voieMsg = document.createElement("div");
     voieMsg.innerText = result.voie;
-    voieMsg.style.fontWeight ='bold';
+    voieMsg.style.fontWeight = 'bold';
     card.appendChild(voieMsg);
 
     let localMsg = document.createElement("div");
     localMsg.innerText = result.precision_localisation;
     card.appendChild(localMsg);
+}
+
+function getFormattedDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(today.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+    console.log(formattedDate)
+    return formattedDate;
 }

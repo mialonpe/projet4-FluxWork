@@ -19,20 +19,22 @@ function getResponseDisrupt() {
 
 function showDisruption() {
     getResponseDisrupt()
-    .then(data => { if (data.length > 0) {
-        for (disrupt of data) {
-            if (disrupt.status = "active") {
-                if (disrupt.messages[0].text != "Panne d'un ascenseur") {
-                    if (disrupt.messages[0].channel.content_type == "text/plain") {
-                        getDisruptMsg(disrupt.messages)
-                    } else if (disrupt.messages[0].channel.content_type == "text/html") {
-                        getAlertMsg(disrupt.messages);
+        .then(data => {
+            if (data.length > 0) {
+                for (disrupt of data) {
+                    if (disrupt.status = "active") {
+                        if (disrupt.messages[0].text != "Panne d'un ascenseur") {
+                            if (disrupt.messages[0].channel.content_type == "text/plain") {
+                                getDisruptMsg(disrupt.messages)
+                            } else if (disrupt.messages[0].channel.content_type == "text/html") {
+                                getAlertMsg(disrupt.messages);
+                            }
+                        }
                     }
                 }
             }
-        }
-    }})
-    .catch(error => console.error('Error fetching meteo data:', error))
+        })
+        .catch(error => console.error('Error fetching disruptions data:', error))
 }
 
 function getDisruptMsg(messages) {
